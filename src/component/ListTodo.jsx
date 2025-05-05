@@ -15,11 +15,15 @@ const ListTodo = () => {
   const deleteTodo = (id) => {
     axios.delete(`http://localhost:5000/todos/${id}`).then(() => {
       setTodos(todos.filter((todo) => todo.id !== id));
+      window.alert("Are you sure you want to delete?");
+    }).catch((error) => {
+      console.error("Error deleting todo:", error);
+      window.alert("Failed to delete todo.");
     });
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto p-6 ">
       <h2 className="text-2xl font-bold mb-4">Todo List</h2>
       <Link
         to="/add"
